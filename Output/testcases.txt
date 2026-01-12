@@ -1,0 +1,535 @@
+Here are the automation-ready test cases generated from the provided BDD scenarios:
+
+---
+
+**Test Case ID:** TC-PSC-001
+**Epic:** Practice Session Configuration (Mentor)
+**Feature:** Configure Practice Session
+**Scenario Name:** Mentor configures a practice session successfully
+**Description:** Verify that a mentor can successfully configure and save a practice session by providing valid inputs for practice type, module, sub-module (optional), and question counts within allowed limits.
+**Objective:** To ensure mentors can create practice sessions with valid configurations.
+**Test Data:**
+*   Practice Type: "Self Practice"
+*   Module: "Java Basics"
+*   Sub-Module: "Variables" (optional, can be left blank)
+*   Easy Questions: 5 (within allowed limits, e.g., 1-10)
+*   Medium Questions: 3 (within allowed limits, e.g., 1-10)
+*   Hard Questions: 2 (within allowed limits, e.g., 1-10)
+**Step-by-Step Test Steps:**
+1.  Navigate to the Mentor Control Panel.
+2.  Select a valid Practice Type (e.g., "Self Practice") from the dropdown.
+3.  Select a Module (e.g., "Java Basics") from the dropdown.
+4.  Optionally select a Sub-Module (e.g., "Variables") from the dropdown, or leave it blank.
+5.  Enter a valid number for Easy questions (e.g., 5) in the respective field.
+6.  Enter a valid number for Medium questions (e.g., 3) in the respective field.
+7.  Enter a valid number for Hard questions (e.g., 2) in the respective field.
+8.  Click the "Submit Configuration" button.
+**Expected Result:**
+*   A success message indicating the practice session has been created should be displayed.
+*   The configured practice session details should be saved and accessible (e.g., visible in a list of sessions or confirmation screen).
+**Practice Type:** N/A
+**Priority:** High
+**Severity:** Critical
+**Suggested Automation Tags:** @Mentor @Configuration @Success @PracticeSession
+
+---
+
+**Test Case ID:** TC-PSC-002
+**Epic:** Practice Session Configuration (Mentor)
+**Feature:** Configure Practice Session
+**Scenario Name:** Mentor submits configuration with invalid question limits
+**Description:** Verify that the system prevents the creation of a practice session when a mentor enters question counts that exceed the allowed limits and displays a validation error.
+**Objective:** To ensure the system enforces question count limits during practice session configuration.
+**Test Data:**
+*   Practice Type: "Self Practice"
+*   Module: "Java Basics"
+*   Sub-Module: "Variables"
+*   Easy Questions: 15 (exceeds assumed limit, e.g., max 10)
+*   Medium Questions: 3
+*   Hard Questions: 2
+**Step-by-Step Test Steps:**
+1.  Navigate to the Mentor Control Panel.
+2.  Select a valid Practice Type (e.g., "Self Practice").
+3.  Select a Module (e.g., "Java Basics").
+4.  Enter a number for Easy questions that exceeds the allowed limit (e.g., 15, assuming max is 10).
+5.  Enter valid numbers for Medium and Hard questions (e.g., 3 and 2).
+6.  Click the "Submit Configuration" button.
+**Expected Result:**
+*   A validation error message should be displayed, specifically indicating the issue with the question count (e.g., "Easy question count exceeds allowed limit").
+*   The practice session should not be created.
+*   The mentor should remain on the configuration page.
+**Practice Type:** N/A
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Mentor @Configuration @InvalidInput @Validation
+
+---
+
+**Test Case ID:** TC-QM-001
+**Epic:** Question Management
+**Feature:** Fetch and Display Questions
+**Scenario Name:** Questions are fetched based on configuration
+**Description:** Verify that when a learner starts a practice session, coding questions are fetched randomly from the database and match the configured module, sub-module, and difficulty criteria.
+**Objective:** To ensure questions presented to the learner align with the session's configuration.
+**Test Data:**
+*   Pre-configured Practice Session:
+    *   Practice Type: "Self Practice"
+    *   Module: "Java Basics"
+    *   Sub-Module: "Loops"
+    *   Easy Questions: 2
+    *   Medium Questions: 1
+    *   Hard Questions: 0
+**Step-by-Step Test Steps:**
+1.  Ensure a practice session is configured with specific Module, Sub-Module, and Difficulty question counts (e.g., Java Basics, Loops, 2 Easy, 1 Medium).
+2.  As a learner, navigate to the list of available practice sessions.
+3.  Select and start the pre-configured practice session.
+4.  Observe the first question displayed in the workspace.
+5.  Navigate through all available questions in the session.
+**Expected Result:**
+*   The questions displayed should be coding questions.
+*   All displayed questions should belong to the "Java Basics" module.
+*   All displayed questions should belong to the "Loops" sub-module.
+*   The session should contain 2 Easy questions and 1 Medium question, fetched randomly.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Critical
+**Suggested Automation Tags:** @Learner @Questions @Fetching @ConfigurationMatch
+
+---
+
+**Test Case ID:** TC-QM-002
+**Epic:** Question Management
+**Feature:** Fetch and Display Questions
+**Scenario Name:** Learner navigates between questions
+**Description:** Verify that a learner can navigate between multiple questions in a session using "Next" and "Previous" buttons, and any previously saved code for a question is retained upon navigation.
+**Objective:** To ensure seamless navigation and code persistence across questions within a practice session.
+**Test Data:**
+*   Pre-configured Practice Session with at least 3 questions.
+*   Sample code for Question 1: `public class Main { public static void main(String[] args) { System.out.println("Hello Q1"); } }`
+*   Sample code for Question 2: `// Code for Question 2`
+**Step-by-Step Test Steps:**
+1.  Start a practice session that contains multiple questions (e.g., 3 questions).
+2.  In the code editor for the first question, type some sample code (e.g., `public class Main { public static void main(String[] args) { System.out.println("Hello Q1"); } }`).
+3.  Click the "Next" button to navigate to the second question.
+4.  In the code editor for the second question, type some different sample code (e.g., `// Code for Question 2`).
+5.  Click the "Previous" button to navigate back to the first question.
+6.  Observe the code editor for the first question.
+7.  Click the "Next" button again to navigate to the second question.
+8.  Observe the code editor for the second question.
+**Expected Result:**
+*   Upon clicking "Next", the subsequent question should be displayed.
+*   Upon clicking "Previous", the preceding question should be displayed.
+*   When navigating back to the first question, the previously entered code (`public class Main { public static void main(String[] args) { System.out.println("Hello Q1"); } }`) should be retained in the editor.
+*   When navigating back to the second question, the previously entered code (`// Code for Question 2`) should be retained in the editor.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @Navigation @CodePersistence
+
+---
+
+**Test Case ID:** TC-PW-001
+**Epic:** Practice Workspace (Learner)
+**Feature:** Access Practice Workspace
+**Scenario Name:** Practice workspace loads successfully
+**Description:** Verify that upon starting a practice session, the learner's workspace loads correctly, displaying all essential panels: problem statement, code editor, execution console, and feedback section.
+**Objective:** To ensure the learner's environment is fully functional and ready for practice.
+**Test Data:** N/A
+**Step-by-Step Test Steps:**
+1.  As a learner, start any available practice session.
+2.  Observe the layout of the practice workspace.
+**Expected Result:**
+*   The practice workspace should load without errors.
+*   A left panel displaying the problem statement should be visible.
+*   A center panel containing the code editor should be visible.
+*   A bottom panel designated for the execution console should be visible.
+*   A right panel intended for the feedback section should be visible.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Critical
+**Suggested Automation Tags:** @Learner @Workspace @UI @Load
+
+---
+
+**Test Case ID:** TC-PH-001
+**Epic:** Practice Header
+**Feature:** Display Practice Header
+**Scenario Name:** Practice header displays correct information
+**Description:** Verify that the practice header in an active session correctly displays the practice type, initiates a session timer, and ensures the timer continues to run across question navigation.
+**Objective:** To ensure learners have accurate session information and time tracking visible at all times.
+**Test Data:**
+*   Configured Practice Session: "Self Practice"
+**Step-by-Step Test Steps:**
+1.  As a learner, start a "Self Practice" session.
+2.  Observe the header section of the practice workspace.
+3.  Note the displayed practice type.
+4.  Note the initial state of the session timer.
+5.  Wait for a few seconds and observe the timer.
+6.  If multiple questions are available, navigate to the next question.
+7.  Observe the session timer after navigation.
+**Expected Result:**
+*   The practice type (e.g., "Self Practice") should be clearly displayed in the header.
+*   A session timer should be visible and start running (e.g., from 00:00:00) immediately upon session start.
+*   The timer should increment continuously.
+*   Upon navigating to a different question, the timer should continue running from its last recorded time, without resetting or pausing.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @Header @Timer @PracticeType
+
+---
+
+**Test Case ID:** TC-CER-001
+**Epic:** Code Editor Restrictions
+**Feature:** Restrict Editor Actions
+**Scenario Name:** Cut, copy, and paste are disabled
+**Description:** Verify that a learner is unable to perform cut, copy, or paste actions within the code editor to prevent external content usage or unauthorized code manipulation.
+**Objective:** To enforce restrictions on editor actions as per requirements.
+**Test Data:**
+*   Sample code in editor: `System.out.println("Test");`
+*   External text to paste: `// External code`
+**Step-by-Step Test Steps:**
+1.  Start a practice session and access the code editor.
+2.  Type some sample code (e.g., `System.out.println("Test");`).
+3.  Attempt to select a portion of the code.
+4.  Attempt to perform a "Cut" action (e.g., using Ctrl+X / Cmd+X, or right-click context menu).
+5.  Attempt to perform a "Copy" action (e.g., using Ctrl+C / Cmd+C, or right-click context menu).
+6.  Attempt to perform a "Paste" action (e.g., using Ctrl+V / Cmd+V, or right-click context menu) with some external text copied to the clipboard.
+**Expected Result:**
+*   The "Cut" action should be blocked (e.g., nothing happens, or an alert/message indicates the action is disabled).
+*   The "Copy" action should be blocked (e.g., nothing happens, or an alert/message indicates the action is disabled, and clipboard remains empty).
+*   The "Paste" action should be blocked (e.g., nothing is pasted, or an alert/message indicates the action is disabled).
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @Editor @Restrictions @Security
+
+---
+
+**Test Case ID:** TC-CE-001
+**Epic:** Code Execution
+**Feature:** Compile and Run Code
+**Scenario Name:** Learner runs code in Lab Practice
+**Description:** Verify that in Lab Practice, a learner can successfully compile and run their code, and the output is displayed in the execution console.
+**Objective:** To ensure the code execution functionality works correctly for Lab Practice.
+**Test Data:**
+*   Practice Type: "Lab Practice"
+*   Sample valid code: `public class Main { public static void main(String[] args) { System.out.println("Hello Lab!"); } }`
+**Step-by-Step Test Steps:**
+1.  Start a "Lab Practice" session.
+2.  Enter valid code into the code editor (e.g., `public class Main { public static void main(String[] args) { System.out.println("Hello Lab!"); } }`).
+3.  Click the "Run Code" button.
+4.  Observe the execution console.
+**Expected Result:**
+*   The code should compile and execute successfully.
+*   The output "Hello Lab!" should be displayed in the execution console.
+**Practice Type:** Lab
+**Priority:** High
+**Severity:** Critical
+**Suggested Automation Tags:** @Learner @LabPractice @RunCode @Execution
+
+---
+
+**Test Case ID:** TC-CE-002
+**Epic:** Code Execution
+**Feature:** Compile and Run Code
+**Scenario Name:** Learner runs code in Self Practice
+**Description:** Verify that in Self Practice, a learner can successfully compile and run their code, and the output is displayed in the execution console.
+**Objective:** To ensure the code execution functionality works correctly for Self Practice.
+**Test Data:**
+*   Practice Type: "Self Practice"
+*   Sample valid code: `public class Main { public static void main(String[] args) { System.out.println("Hello Self!"); } }`
+**Step-by-Step Test Steps:**
+1.  Start a "Self Practice" session.
+2.  Enter valid code into the code editor (e.g., `public class Main { public static void main(String[] args) { System.out.println("Hello Self!"); } }`).
+3.  Click the "Run Code" button.
+4.  Observe the execution console.
+**Expected Result:**
+*   The code should compile and execute successfully.
+*   The output "Hello Self!" should be displayed in the execution console.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Critical
+**Suggested Automation Tags:** @Learner @SelfPractice @RunCode @Execution
+
+---
+
+**Test Case ID:** TC-CE-003
+**Epic:** Code Execution
+**Feature:** Compile and Run Code
+**Scenario Name:** Run Code is not available in Review Practice
+**Description:** Verify that the "Run Code" option is explicitly unavailable to the learner when in a Review Practice session.
+**Objective:** To ensure the "Run Code" functionality is correctly restricted for Review Practice.
+**Test Data:**
+*   Practice Type: "Review Practice"
+**Step-by-Step Test Steps:**
+1.  Start a "Review Practice" session.
+2.  Observe the practice workspace, specifically looking for the "Run Code" button or similar execution options.
+**Expected Result:**
+*   The "Run Code" button should be disabled, hidden, or completely absent from the user interface.
+*   There should be no visible option to compile or execute code.
+**Practice Type:** Review
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @ReviewPractice @RunCode @Restriction
+
+---
+
+**Test Case ID:** TC-SS-001
+**Epic:** Save and Submission
+**Feature:** Save Code
+**Scenario Name:** Learner saves code successfully
+**Description:** Verify that a learner can successfully save their written code and receive a confirmation message.
+**Objective:** To ensure the code saving functionality works as expected.
+**Test Data:**
+*   Sample code: `// My solution code`
+**Step-by-Step Test Steps:**
+1.  Start a practice session.
+2.  Enter some code into the code editor (e.g., `// My solution code`).
+3.  Click the "Save" button.
+4.  Observe the UI for messages.
+**Expected Result:**
+*   A success message (e.g., "Code saved successfully" or similar) should be displayed.
+*   The entered code should be persisted.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @SaveCode @Success
+
+---
+
+**Test Case ID:** TC-SS-002
+**Epic:** Save and Submission
+**Feature:** Final Submission
+**Scenario Name:** Learner submits solution successfully
+**Description:** Verify that upon submitting a solution, the code editor is locked, the solution is submitted, and AI evaluation is triggered.
+**Objective:** To ensure the final submission process works correctly, securing the code and initiating evaluation.
+**Test Data:**
+*   Sample completed code: `public class Solution { /* completed code */ }`
+**Step-by-Step Test Steps:**
+1.  Start a practice session.
+2.  Enter a completed solution into the code editor (e.g., `public class Solution { /* completed code */ }`).
+3.  Click the "Submit" button.
+4.  Observe the state of the code editor.
+5.  Observe for any indications of submission and AI evaluation triggering.
+**Expected Result:**
+*   The code editor should become locked, preventing further edits.
+*   A confirmation message for submission should be displayed.
+*   AI evaluation should be triggered (e.g., a loading indicator for evaluation, or a message indicating evaluation in progress).
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Critical
+**Suggested Automation Tags:** @Learner @Submission @AITrigger @EditorLock
+
+---
+
+**Test Case ID:** TC-SS-003
+**Epic:** Save and Submission
+**Feature:** Final Submission
+**Scenario Name:** Submitted code cannot be edited
+**Description:** Verify that once a solution has been submitted, the learner is unable to make any further edits to the code in the editor.
+**Objective:** To ensure the integrity of submitted solutions by preventing post-submission modifications.
+**Test Data:**
+*   Sample submitted code: `public class Solution { /* submitted code */ }`
+**Step-by-Step Test Steps:**
+1.  Start a practice session.
+2.  Enter some code into the code editor.
+3.  Click the "Submit" button to submit the solution.
+4.  After submission, attempt to type, delete, or modify the code in the editor.
+5.  Attempt to use cut, copy, paste.
+**Expected Result:**
+*   The code editor should be completely uneditable.
+*   No new characters can be typed.
+*   Existing characters cannot be deleted or modified.
+*   Cut, copy, paste actions should also remain blocked or explicitly disabled.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Critical
+**Suggested Automation Tags:** @Learner @Submission @EditorLock @NoEdit
+
+---
+
+**Test Case ID:** TC-PTT-001
+**Epic:** Practice Time Tracking
+**Feature:** Track Practice Time
+**Scenario Name:** Practice time is calculated correctly
+**Description:** Verify that the total practice time is accurately calculated as the difference between submission time and start time, with idle time correctly deducted, and the final time is stored.
+**Objective:** To ensure accurate tracking and storage of learner practice time.
+**Test Data:**
+*   Start Time: T0
+*   Submission Time: T1
+*   Simulated Idle Time: 1 minute (e.g., by switching tabs or minimizing the window for a period)
+**Step-by-Step Test Steps:**
+1.  As a learner, start a practice session and note the exact start time (T0).
+2.  Engage in practice for a period (e.g., 2 minutes).
+3.  Simulate idle time by leaving the practice app (e.g., switching to another browser tab or minimizing the window) for a known duration (e.g., 1 minute).
+4.  Return to the practice app and continue practicing for another period (e.g., 2 minutes).
+5.  Submit the solution and note the exact submission time (T1).
+6.  Access the stored practice time (e.g., on a results page or mentor report).
+**Expected Result:**
+*   The total practice time displayed and stored should be (T1 - T0) minus the simulated idle time (e.g., if T1-T0 = 5 minutes and idle time = 1 minute, then final time should be 4 minutes).
+*   The final calculated time should be accurately stored in the system.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @TimeTracking @IdleTime @Calculation
+
+---
+
+**Test Case ID:** TC-AIEF-001
+**Epic:** AI Evaluation and Feedback
+**Feature:** Trigger AI Evaluation
+**Scenario Name:** AI evaluation is triggered only after submission
+**Description:** Verify that AI evaluation is exclusively triggered upon final solution submission and not when the learner performs "Run Code" or "Save" actions.
+**Objective:** To ensure AI evaluation is initiated at the correct stage of the practice workflow.
+**Test Data:**
+*   Sample code for running/saving.
+*   Sample completed code for submission.
+**Step-by-Step Test Steps:**
+1.  Start a practice session (e.g., Self Practice or Lab Practice).
+2.  Enter some code into the editor.
+3.  Click the "Run Code" button.
+4.  Observe for any signs of AI evaluation (e.g., "AI evaluating..." message, feedback section updating with AI scores).
+5.  Click the "Save" button.
+6.  Observe for any signs of AI evaluation.
+7.  Enter a completed solution into the editor.
+8.  Click the "Submit" button.
+9.  Observe for any signs of AI evaluation.
+**Expected Result:**
+*   No AI evaluation should be triggered when "Run Code" is clicked.
+*   No AI evaluation should be triggered when "Save" is clicked.
+*   AI evaluation should be triggered immediately after the "Submit" button is clicked (e.g., a message like "AI evaluation in progress" or the feedback section starting to populate).
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @AITrigger @SubmissionOnly
+
+---
+
+**Test Case ID:** TC-AIEF-002
+**Epic:** AI Evaluation and Feedback
+**Feature:** Display AI Feedback
+**Scenario Name:** Summary review is displayed
+**Description:** Verify that after AI evaluation is completed, the Summary Review section displays the overall score, strengths, weaknesses, errors, and recommendations.
+**Objective:** To ensure comprehensive AI feedback is presented to the learner.
+**Test Data:**
+*   Pre-submitted solution with completed AI evaluation.
+**Step-by-Step Test Steps:**
+1.  Complete a practice session by submitting a solution.
+2.  Wait for the AI evaluation to complete (e.g., until a "Evaluation Complete" message appears or the feedback section populates).
+3.  Navigate to the feedback section (right panel).
+4.  Observe the content of the Summary Review.
+**Expected Result:**
+*   The Summary Review section should be visible.
+*   An overall score should be clearly displayed.
+*   Sections for "Strengths" should be present and contain relevant feedback.
+*   Sections for "Weaknesses" should be present and contain relevant feedback.
+*   Sections for "Errors" should be present and contain relevant feedback.
+*   Sections for "Recommendations" should be present and contain relevant feedback.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @AIFeedback @SummaryReview @Display
+
+---
+
+**Test Case ID:** TC-AIEF-003
+**Epic:** AI Evaluation and Feedback
+**Feature:** Display AI Feedback
+**Scenario Name:** Scoring metrics are displayed
+**Description:** Verify that after AI evaluation is completed, individual scoring metrics for correctness, code quality, efficiency, and the overall score are displayed.
+**Objective:** To ensure detailed scoring metrics are provided to the learner for their solution.
+**Test Data:**
+*   Pre-submitted solution with completed AI evaluation.
+**Step-by-Step Test Steps:**
+1.  Complete a practice session by submitting a solution.
+2.  Wait for the AI evaluation to complete.
+3.  Navigate to the feedback section.
+4.  Observe the scoring metrics displayed.
+**Expected Result:**
+*   A "Correctness Score" should be displayed with a numerical value.
+*   A "Code Quality Score" should be displayed with a numerical value.
+*   An "Efficiency Score" should be displayed with a numerical value.
+*   An "Overall Score" should be displayed, likely a composite of the other scores.
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @AIFeedback @ScoringMetrics @Display
+
+---
+
+**Test Case ID:** TC-AIEF-004
+**Epic:** AI Evaluation and Feedback
+**Feature:** Display AI Feedback
+**Scenario Name:** Corrected code is displayed
+**Description:** Verify that after AI evaluation is completed, an AI-generated corrected version of the code, adhering to best practices, is displayed to the learner.
+**Objective:** To provide learners with an improved code example based on AI analysis.
+**Test Data:**
+*   Pre-submitted solution with completed AI evaluation.
+**Step-by-Step Test Steps:**
+1.  Complete a practice session by submitting a solution.
+2.  Wait for the AI evaluation to complete.
+3.  Navigate to the feedback section.
+4.  Look for a section displaying "AI-generated corrected code" or similar.
+5.  Review the displayed corrected code.
+**Expected Result:**
+*   A section containing AI-generated corrected code should be displayed.
+*   The corrected code should reflect improvements based on best practices (e.g., better variable names, optimized logic, proper formatting).
+**Practice Type:** Self
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @AIFeedback @CorrectedCode @Display
+
+---
+
+**Test Case ID:** TC-RPR-001
+**Epic:** Review Practice (AS-IS)
+**Feature:** Review Practice Restrictions
+**Scenario Name:** Review Practice allows submission only
+**Description:** Verify that in Review Practice, the learner can write code and submit it directly, but "Run" or "Compile" options are explicitly unavailable.
+**Objective:** To ensure Review Practice adheres to its specific interaction model, focusing on direct submission without execution.
+**Test Data:**
+*   Practice Type: "Review Practice"
+*   Sample code: `// My review code`
+**Step-by-Step Test Steps:**
+1.  Start a "Review Practice" session.
+2.  Attempt to type code into the code editor.
+3.  Look for "Run Code" or "Compile" buttons/options in the workspace.
+4.  Enter some code (e.g., `// My review code`).
+5.  Click the "Submit" button.
+6.  Observe the outcome of the submission.
+**Expected Result:**
+*   The learner should be able to freely write and edit code in the editor.
+*   The "Run Code" and "Compile" options should be absent, disabled, or otherwise unavailable.
+*   The "Submit" button should be available and functional.
+*   Upon clicking "Submit", the solution should be submitted successfully, and AI evaluation should be triggered.
+**Practice Type:** Review
+**Priority:** High
+**Severity:** Critical
+**Suggested Automation Tags:** @Learner @ReviewPractice @Restrictions @Submission
+
+---
+
+**Test Case ID:** TC-RPR-002
+**Epic:** Review Practice (AS-IS)
+**Feature:** Review Practice Restrictions
+**Scenario Name:** Review Practice limitations
+**Description:** Verify that specific proctoring-related features like app focus detection, network restriction, camera verification, and automatic ejection are not enforced in Review Practice.
+**Objective:** To confirm that Review Practice operates without proctoring mechanisms, as per current requirements.
+**Test Data:**
+*   Practice Type: "Review Practice"
+**Step-by-Step Test Steps:**
+1.  Start a "Review Practice" session.
+2.  After the session starts, switch to another application or browser tab for a prolonged period (e.g., 1 minute) to test app focus detection.
+3.  Attempt to access external websites or resources (if possible within the environment) to test network restriction.
+4.  Observe for any camera activation prompts or continuous camera feed requirements.
+5.  Remain idle or switch focus for an extended period to see if automatic ejection occurs.
+**Expected Result:**
+*   No warning or action should be taken for switching app focus.
+*   Network access should not be restricted (e.g., external websites should be accessible if the browser allows).
+*   No camera verification or monitoring should be initiated or enforced.
+*   The learner should not be automatically ejected from the session due to inactivity or focus loss.
+**Practice Type:** Review
+**Priority:** High
+**Severity:** Major
+**Suggested Automation Tags:** @Learner @ReviewPractice @Limitations @NoProctoring

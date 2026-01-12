@@ -1,0 +1,181 @@
+EJET PRACTICE APP – BDD REQUIREMENTS (AS-IS)
+
+EPIC 1: Practice Session Configuration (Mentor)
+
+Feature: Configure Practice Session
+
+Scenario: Mentor configures a practice session successfully
+Given the mentor is on the Mentor Control Panel
+When the mentor selects a valid Practice Type
+And selects a Module
+And optionally selects a Sub-Module
+And enters valid numbers for Easy, Medium, and Hard questions within allowed limits
+And submits the configuration
+Then a practice session should be created successfully
+And the configuration should be saved
+
+Scenario: Mentor submits configuration with invalid question limits
+Given the mentor is configuring a practice session
+When the mentor enters question counts exceeding the allowed limit
+And submits the configuration
+Then the system should display a validation error
+And the practice session should not be created
+
+
+EPIC 2: Question Management
+
+Feature: Fetch and Display Questions
+
+Scenario: Questions are fetched based on configuration
+Given a practice session is configured with Module, Sub-Module, and Difficulty
+When the learner starts the practice session
+Then coding questions should be fetched randomly from the database
+And the questions should match the configured criteria
+
+Scenario: Learner navigates between questions
+Given multiple questions are available in a session
+When the learner clicks Next or Previous
+Then the corresponding question should be displayed
+And previously saved code should be retained
+
+
+EPIC 3: Practice Workspace (Learner)
+
+Feature: Access Practice Workspace
+
+Scenario: Practice workspace loads successfully
+Given the learner starts a practice session
+Then the workspace should display
+And the left panel should show the problem statement
+And the center panel should show the code editor
+And the bottom panel should show the execution console
+And the right panel should show the feedback section
+
+
+EPIC 4: Practice Header
+
+Feature: Display Practice Header
+
+Scenario: Practice header displays correct information
+Given the learner is in an active practice session
+Then the practice type should be displayed
+And the session timer should start running
+And the timer should continue across question navigation
+
+
+EPIC 5: Code Editor Restrictions
+
+Feature: Restrict Editor Actions
+
+Scenario: Cut, copy, and paste are disabled
+Given the learner is typing code in the editor
+When the learner attempts to cut, copy, or paste content
+Then the action should be blocked
+
+
+EPIC 6: Code Execution
+
+Feature: Compile and Run Code
+
+Scenario: Learner runs code in Lab Practice
+Given the learner is in Lab Practice
+When the learner clicks Run Code
+Then the code should be compiled and executed
+And the output should be displayed in the console
+
+Scenario: Learner runs code in Self Practice
+Given the learner is in Self Practice
+When the learner clicks Run Code
+Then the code should be compiled and executed
+And the output should be displayed in the console
+
+Scenario: Run Code is not available in Review Practice
+Given the learner is in Review Practice
+Then the Run Code option should not be available
+
+
+EPIC 7: Save and Submission
+
+Feature: Save Code
+
+Scenario: Learner saves code successfully
+Given the learner has written code
+When the learner clicks Save
+Then the code should be saved
+And a success message should be displayed
+
+Feature: Final Submission
+
+Scenario: Learner submits solution successfully
+Given the learner has completed the solution
+When the learner clicks Submit
+Then the code editor should be locked
+And the solution should be submitted
+And AI evaluation should be triggered
+
+Scenario: Submitted code cannot be edited
+Given the learner has submitted the solution
+When the learner attempts to edit the code
+Then editing should not be allowed
+
+
+EPIC 8: Practice Time Tracking
+
+Feature: Track Practice Time
+
+Scenario: Practice time is calculated correctly
+Given the learner starts a practice session
+When the learner submits the solution
+Then total practice time should be calculated as Submission Time minus Start Time
+And idle time should be deducted
+And the final time should be stored
+
+
+EPIC 9: AI Evaluation and Feedback
+
+Feature: Trigger AI Evaluation
+
+Scenario: AI evaluation is triggered only after submission
+Given the learner is practicing
+When the learner runs or saves code
+Then AI evaluation should not be triggered
+When the learner submits the solution
+Then AI evaluation should be triggered
+
+Feature: Display AI Feedback
+
+Scenario: Summary review is displayed
+Given AI evaluation is completed
+Then the Summary Review should display
+And overall score should be shown
+And strengths, weaknesses, errors, and recommendations should be shown
+
+Scenario: Scoring metrics are displayed
+Given AI evaluation is completed
+Then correctness score should be displayed
+And code quality score should be displayed
+And efficiency score should be displayed
+And overall score should be displayed
+
+Scenario: Corrected code is displayed
+Given AI evaluation is completed
+Then AI-generated corrected code should be displayed
+And the code should follow best practices
+
+
+EPIC 10: Review Practice (AS-IS)
+
+Feature: Review Practice Restrictions
+
+Scenario: Review Practice allows submission only
+Given the learner is in Review Practice
+Then the learner should be able to write code
+And the learner should be able to submit directly
+And run or compile options should not be available
+
+Scenario: Review Practice limitations
+Given the learner is in Review Practice
+Then app focus detection should not occur
+And network restriction should not be enforced
+And camera verification should not be enforced
+And automatic ejection should not occur

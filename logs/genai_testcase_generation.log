@@ -1,0 +1,13 @@
+2026-01-12 12:08:18 | INFO | Environment variables loaded
+2026-01-12 12:08:19 | INFO | Gemini client initialized
+2026-01-12 12:08:19 | INFO | Reading file: Prompts/generate_testcases_prompt.txt
+2026-01-12 12:08:19 | INFO | Reading file: BDDRequirement/EJET_PracticeApp_BDD_AS_IS.txt
+2026-01-12 12:08:19 | INFO | System prompt and BDD loaded
+2026-01-12 12:08:19 | INFO | Calling Gemini model to generate test cases
+2026-01-12 12:09:20 | INFO | Gemini response received
+2026-01-12 12:09:20 | INFO | Extracting JSON from Gemini output
+2026-01-12 12:09:20 | INFO | JSON parsed successfully
+2026-01-12 12:09:20 | INFO | Creating Excel workbook
+2026-01-12 12:09:20 | INFO | Populating Excel rows
+2026-01-12 12:09:20 | INFO | All test cases written to Excel
+2026-01-12 12:09:20 | INFO | Excel file generated successfully: Output\EJET_TestCases.xlsx
