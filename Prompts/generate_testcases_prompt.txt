@@ -10,10 +10,10 @@ Each test case MUST contain the following fields:
 - description
 - objective
 - test_data
-- test_steps (array of steps)
+- test_steps (one by one in 1., 2., 3., etc.)
 - expected_result
 - practice_type
-- priority
+- priority (high, medium, low)
 - severity
 - automation_tags (array)
 
